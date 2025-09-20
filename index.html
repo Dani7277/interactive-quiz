@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2575fc;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-form {
+            margin-top: 20px;
+        }
+        
+        .question {
+            background-color: #f8f9fa;
+            border-left: 5px solid #2575fc;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            margin-bottom: 15px;
+            color: #2575fc;
+            font-size: 1.3rem;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+        }
+        
+        label:hover {
+            background-color: #e8f4fd;
+            border-color: #2575fc;
+        }
+        
+        input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+        
+        .result h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .github-info {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        
+        .github-info h3 {
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+        
+        .github-info a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .github-info a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Interactive Quiz!</h1>
+            <p class="description">Test your knowledge about web development and computer science!</p>
+        </header>
+        
+        <form class="quiz-form" id="quizForm">
+            <div class="question">
+                <h2>1. What does HTML stand for?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> A) Hyper Text Markup Language</label>
+                    <label><input type="radio" name="q1" value="b"> B) High Tech Modern Language</label>
+                    <label><input type="radio" name="q1" value="c"> C) Hyper Transfer Markup Language</label>
+                    <label><input type="radio" name="q1" value="d"> D) Hyperlinks and Text Markup Language</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h2>2. Which language is primarily used for web development?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> A) Python</label>
+                    <label><input type="radio" name="q2" value="b"> B) JavaScript</label>
+                    <label><input type="radio" name="q2" value="c"> C) Java</label>
+                    <label><input type="radio" name="q2" value="d"> D) C++</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h2>3. What is the purpose of CSS?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> A) To structure web content</label>
+                    <label><input type="radio" name="q3" value="b"> B) To add interactivity to websites</label>
+                    <label><input type="radio" name="q3" value="c"> C) To style and layout web pages</label>
+                    <label><input type="radio" name="q3" value="d"> D) To manage server-side operations</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h2>4. Which of these is a JavaScript framework?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> A) Django</label>
+                    <label><input type="radio" name="q4" value="b"> B) Flask</label>
+                    <label><input type="radio" name="q4" value="c"> C) React</label>
+                    <label><input type="radio" name="q4" value="d"> D) Ruby on Rails</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h2>5. What does API stand for?</h2>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> A) Automated Programming Interface</label>
+                    <label><input type="radio" name="q5" value="b"> B) Application Programming Interface</label>
+                    <label><input type="radio" name="q5" value="c"> C) Advanced Program Interaction</label>
+                    <label><input type="radio" name="q5" value="d"> D) Application Process Integration</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </form>
+        
+        <div class="result" id="result">
+            <h2>Your Quiz Results</h2>
+            <div class="score" id="score"></div>
+            <p class="message" id="message"></p>
+            <button class="submit-btn" onclick="resetQuiz()">Try Again</button>
+        </div>
+    
+    </div>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'b',
+            q3: 'c',
+            q4: 'c',
+            q5: 'b'
+        };
+        
+        // Handle form submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+            
+            // Check each question
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selected = document.querySelector(`input[name=q${i}]:checked`);
+                
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+            
+            // Display results
+            const scoreElement = document.getElementById('score');
+            const messageElement = document.getElementById('message');
+            const resultElement = document.getElementById('result');
+            
+            scoreElement.textContent = `${score}/${totalQuestions}`;
+            
+            // Set message based on score
+            if (score === totalQuestions) {
+                messageElement.textContent = 'Perfect! You got all answers correct!';
+            } else if (score >= totalQuestions * 0.7) {
+                messageElement.textContent = 'Great job! You have good knowledge of web development.';
+            } else if (score >= totalQuestions * 0.5) {
+                messageElement.textContent = 'Good effort! Keep learning and try again.';
+            } else {
+                messageElement.textContent = 'Keep studying web development fundamentals and try again!';
+            }
+            
+            // Show result section
+            resultElement.style.display = 'block';
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Reset quiz function
+        function resetQuiz() {
+            document.getElementById('quizForm').reset();
+            document.getElementById('result').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
